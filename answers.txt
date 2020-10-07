@@ -1,2 +1,5 @@
-When created te README.md and then trying to check status with "git status" it said that there were changes to be commited, a new file: README.md,
-the second time, after I commited the changes, it said that there was nothing to commit.
+Q1 - 
+
+Q2 - When created te README.md and then trying to check status with "git status" it said that there were changes to be commited, a new file: README.md.
+
+Q3 - The color of the leters refering to the file changed from green to red.
