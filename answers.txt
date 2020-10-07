@@ -1,5 +1,5 @@
-Q1 - 
+Q1 - It indicates that there is a new file named README.md
 
-Q2 - When created te README.md and then trying to check status with "git status" it said that there were changes to be commited, a new file: README.md.
+Q2 - It indicates that there is a new file named README.md
 
 Q3 - The color of the leters refering to the file changed from green to red.
