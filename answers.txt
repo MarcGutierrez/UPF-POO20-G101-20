@@ -3,3 +3,9 @@ Q1 - It indicates that there is a new file named README.md
 Q2 - It indicates that there is a new file named README.md
 
 Q3 - The color of the leters refering to the file changed from green to red.
+
+Q4 - It indicates the new changes on the file.
+
+Q5 - 9 in total, the majority testing out to learn how to use github before answering the questions.
+
+Q6 - It indicates the changes of the files done since the last commitment
