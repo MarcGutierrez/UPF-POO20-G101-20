@@ -6,11 +6,11 @@ public class Program {
     private int programIndex;
     private List<Instruction> Instructions;
 
-    Program(List<Instruction> inst, String name, int index){
+    Program(List<Instruction> inst, String name){
         Instructions = inst;
         this.name = name;
         loopIndex = 0;
-        programIndex = Instructions.size();
+        programIndex = 0;
     }
 
     public String getName(){
@@ -27,18 +27,18 @@ public class Program {
     }
 
     public void restart(){
-        goToStartLoop();
+        programIndex = 0;
     }
 
     public boolean hasFinished(){    	
-        return (loopIndex-- == programIndex) ? true : false;
+        return (loopIndex-- == this.Instructions.size()) ? true : false;
     }
 
     public Instruction getNextInstruction(){
     	if (hasFinished()) {
     		return Instructions.get(Instructions.size());
     	}
-    	return Instructions.get(++loopIndex);
+    	return Instructions.get(programIndex+1);
     }
     
     public boolean isCorrect() {
@@ -50,7 +50,7 @@ public class Program {
     		}
     		inst = getNextInstruction();
     	}
-    	goToStartLoop();
+    	restart();
     	return correct;
     }
     
@@ -58,7 +58,7 @@ public class Program {
     	Instruction inst = Instructions.get(0);
     	while (!hasFinished()) {
     		if (!inst.isCorrect()) {
-    			System.out.println(inst.getCode() + " " + Integer.toString(inst.getParam()));
+    			System.out.println(inst.getCode() + " " + Double.toString(inst.getParam()));
     		}
     		inst = getNextInstruction();
     	}
@@ -66,6 +66,9 @@ public class Program {
     }
     
     private void goToStartLoop() {
-    	loopIndex = 0;
+    	while (!this.Instructions.get(programIndex).getCode().equals("REP")) {
+    		programIndex--;
+    	}
+    	programIndex++;
     }
 }
