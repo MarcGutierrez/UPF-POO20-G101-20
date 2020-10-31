@@ -81,11 +81,11 @@ public class Turtle {
     public void draw(Graphics g) {
     	int[] xCoords = {}, yCoords = {};
     	
-    	xCoords [ 0 ] = ( int ) ( x + 8 * dirY ); 
-    	xCoords [ 1 ] = ( int ) ( x - 8 * dirY ); 
-    	xCoords [ 2 ] = ( int ) ( x + 16 * dirX); 
-    	yCoords [ 0 ] = ( int ) ( y - 8 * dirX );
-    	yCoords [ 1 ] = ( int ) ( y + 8 * dirX );
+    	xCoords [ 0 ] = ( int ) ( x + 8 * dirY  ); 
+    	xCoords [ 1 ] = ( int ) ( x - 8 * dirY  ); 
+    	xCoords [ 2 ] = ( int ) ( x + 16 * dirX ); 
+    	yCoords [ 0 ] = ( int ) ( y - 8 * dirX  );
+    	yCoords [ 1 ] = ( int ) ( y + 8 * dirX  );
     	yCoords [ 2 ] = ( int ) ( y + 16 * dirY );
     	
     	g . drawPolygon ( xCoords , yCoords , 3 ) ;

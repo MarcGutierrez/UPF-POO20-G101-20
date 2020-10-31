@@ -26,7 +26,7 @@ public class Logo {
     }
 
     public void execute(Program p, Graphics g) {
-    	
+    	t.draw(g);
     }
 
 }
