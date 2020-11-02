@@ -83,12 +83,12 @@ public class Turtle {
     public void draw(Graphics g) {
     	int[] xCoords = {0, 0, 0}, yCoords = {0, 0, 0};
     	
-    	xCoords [ 0 ] = ( int ) ( x + dirY  ); 
-    	xCoords [ 1 ] = ( int ) ( x - dirY  ); 
-    	xCoords [ 2 ] = ( int ) ( x + 2 * dirX ); 
-    	yCoords [ 0 ] = ( int ) ( y - dirX  );
-    	yCoords [ 1 ] = ( int ) ( y + dirX  );
-    	yCoords [ 2 ] = ( int ) ( y + 2 * dirY );
+    	xCoords [ 0 ] = ( int ) ( x + 8 * dirY  ); 
+    	xCoords [ 1 ] = ( int ) ( x - 8 * dirY  ); 
+    	xCoords [ 2 ] = ( int ) ( x + 16 * dirX ); 
+    	yCoords [ 0 ] = ( int ) ( y - 8 * dirX  );
+    	yCoords [ 1 ] = ( int ) ( y + 8 * dirX  );
+    	yCoords [ 2 ] = ( int ) ( y + 16 * dirY );
     	
     	int nPoints = xCoords.length;
     	
