@@ -9,8 +9,10 @@ public class Turtle {
     private Double dirY;
     private boolean pen;
 
-    Turtle(){
-    	
+    Turtle(int x, int y, Double dirX, Double dirY, boolean pen){
+    	this.x = x; this.y = y;
+    	this.dirX = dirX; this.dirY = dirY;
+    	this.pen = pen;
     }
 
     public int getX(){
@@ -79,15 +81,17 @@ public class Turtle {
     }
 
     public void draw(Graphics g) {
-    	int[] xCoords = {}, yCoords = {};
+    	int[] xCoords = {0, 0, 0}, yCoords = {0, 0, 0};
     	
-    	xCoords [ 0 ] = ( int ) ( x + 8 * dirY  ); 
-    	xCoords [ 1 ] = ( int ) ( x - 8 * dirY  ); 
-    	xCoords [ 2 ] = ( int ) ( x + 16 * dirX ); 
-    	yCoords [ 0 ] = ( int ) ( y - 8 * dirX  );
-    	yCoords [ 1 ] = ( int ) ( y + 8 * dirX  );
-    	yCoords [ 2 ] = ( int ) ( y + 16 * dirY );
+    	xCoords [ 0 ] = ( int ) ( x + dirY  ); 
+    	xCoords [ 1 ] = ( int ) ( x - dirY  ); 
+    	xCoords [ 2 ] = ( int ) ( x + 2 * dirX ); 
+    	yCoords [ 0 ] = ( int ) ( y - dirX  );
+    	yCoords [ 1 ] = ( int ) ( y + dirX  );
+    	yCoords [ 2 ] = ( int ) ( y + 2 * dirY );
     	
-    	g . drawPolygon ( xCoords , yCoords , 3 ) ;
+    	int nPoints = xCoords.length;
+    	
+    	g.drawPolygon ( xCoords, yCoords, nPoints ) ;
     }
 }

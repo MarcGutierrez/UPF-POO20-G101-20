@@ -10,7 +10,7 @@ public class Logo {
     Logo(int width, int height) {
     	this.width = width;
     	this.height = height;
-    	t = new Turtle();
+    	t = new Turtle(width/2, height/2, 0.0, 90.0, true);
     }
 
     public int getWidth() {
@@ -22,7 +22,7 @@ public class Logo {
     }
 
     public void resetTurtle() {
-    	t = new Turtle();
+    	t = new Turtle(0, 0, 0.0, 90.0, true);
     }
 
     public void execute(Program p, Graphics g) {
