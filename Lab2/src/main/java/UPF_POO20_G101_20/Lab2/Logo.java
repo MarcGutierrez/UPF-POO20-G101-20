@@ -22,11 +22,31 @@ public class Logo {
     }
 
     public void resetTurtle() {
-    	t = new Turtle(0, 0, 0.0, 1.0, true);
+    	t = new Turtle(width/2, height/2, 0.0, 1.0, true);
+    }
+    
+    public void togglePen() {
+    	if (t.isPenOn()) {
+    		t.setPen(false);
+    	}
+    	else {
+        	t.setPen(true);
+    	}
     }
 
     public void execute(Program p, Graphics g) {
+    	Instruction ins;
+    	while (!p.hasFinished()) {
+        	t.draw(g);
+    		ins = p.getNextInstruction();
+    		if(ins.getCode().equals("ROT")) {
+    			t.turn(ins.getParam());
+    		}
+    		else if (ins.getCode().equals("FWD")) {
+    			t.forward(ins.getParam(), g);
+    		}
+    	}
     	t.draw(g);
+    	p.restart();
     }
-
 }

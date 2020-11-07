@@ -59,8 +59,11 @@ public class Turtle {
     
     public void forward(double distance, Graphics g) {
     	int xMod = (int)(x + distance*dirX), yMod = (int)(y + distance*dirY);
-    	if (pen) {
+    	if (isPenOn()) {
         	g.drawLine(x, y, xMod, yMod);
+    	}
+    	else {
+    		setCoord(xMod, yMod);
     	}
     	x = xMod;
     	y = yMod;
@@ -68,8 +71,9 @@ public class Turtle {
     
     public void turn(double a) {
     	a = a * (Math.PI/180);
-        dirX = Math.cos(a)*dirX - Math.sin(a)*dirY;
+        double temp = Math.cos(a)*dirX - Math.sin(a)*dirY;
         dirY = Math.sin(a)*dirX + Math.cos(a)*dirY;
+        dirX = temp;
     }
 
     public void setPen(boolean on ){
@@ -81,17 +85,19 @@ public class Turtle {
     }
 
     public void draw(Graphics g) {
-    	int[] xCoords = {0, 0, 0}, yCoords = {0, 0, 0};
-    	
-    	xCoords [ 0 ] = ( int ) ( x + 8 * dirY  ); 
-    	xCoords [ 1 ] = ( int ) ( x - 8 * dirY  ); 
-    	xCoords [ 2 ] = ( int ) ( x + 16 * dirX ); 
-    	yCoords [ 0 ] = ( int ) ( y - 8 * dirX  );
-    	yCoords [ 1 ] = ( int ) ( y + 8 * dirX  );
-    	yCoords [ 2 ] = ( int ) ( y + 16 * dirY );
-    	
-    	int nPoints = xCoords.length;
-    	
-    	g.drawPolygon ( xCoords, yCoords, nPoints ) ;
+    	if (isPenOn()) {
+        	int[] xCoords = {0, 0, 0}, yCoords = {0, 0, 0};
+        	
+        	xCoords [ 0 ] = ( int ) ( x + 8 * dirY  ); 
+        	xCoords [ 1 ] = ( int ) ( x - 8 * dirY  ); 
+        	xCoords [ 2 ] = ( int ) ( x + 16 * dirX ); 
+        	yCoords [ 0 ] = ( int ) ( y - 8 * dirX  );
+        	yCoords [ 1 ] = ( int ) ( y + 8 * dirX  );
+        	yCoords [ 2 ] = ( int ) ( y + 16 * dirY );
+        	
+        	int nPoints = xCoords.length;
+        	
+        	g.drawPolygon ( xCoords, yCoords, nPoints ) ;
+    	}
     }
 }

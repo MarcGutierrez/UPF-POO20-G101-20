@@ -58,21 +58,22 @@ public class GUI extends javax.swing.JFrame {
 		frmLogowindow.setBounds(100, 100, logo.getWidth(), logo.getHeight());
 		
 		
-		JButton btnNewButton = new JButton("Triangle");
+		JButton btnNewButton = new JButton("Square");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				paint(frmLogowindow.getGraphics());
 			}
 		});
-		btnNewButton.setBounds(10, 527, 89, 23);
+		btnNewButton.setBounds(10, 527, 112, 23);
 		frmLogowindow.getContentPane().add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Button 2");
+		JButton btnNewButton_1 = new JButton("Toggle Pen");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				logo.togglePen();
 			}
 		});
-		btnNewButton_1.setBounds( 132, 527, 89, 23);
+		btnNewButton_1.setBounds( 132, 527, 107, 23);
 		frmLogowindow.getContentPane().add(btnNewButton_1);
 	}
 

@@ -22,7 +22,6 @@ public class Program {
     public boolean addInstruction(Instruction instruction){
         if (instruction.isCorrect()) {
             Instructions.add(instruction);
-            programIndex++;
             return true;
         }
         return false;
@@ -33,14 +32,16 @@ public class Program {
     }
 
     public boolean hasFinished(){    	
-        return (loopIndex-- == this.Instructions.size()) ? true : false;
+        return (programIndex == this.Instructions.size()-1) ? true : false;
     }
 
     public Instruction getNextInstruction(){
     	if (hasFinished()) {
-    		return Instructions.get(Instructions.size());
+    		return Instructions.get(Instructions.size()-1);
     	}
-    	return Instructions.get(programIndex+1);
+    	Instruction ins =  Instructions.get(programIndex);
+    	programIndex++;
+    	return ins;
     }
     
     public boolean isCorrect() {
