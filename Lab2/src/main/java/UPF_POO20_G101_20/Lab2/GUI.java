@@ -34,15 +34,12 @@ public class GUI extends javax.swing.JFrame {
 		Instruction in2 = new Instruction("ROT", 90.0);
 		Instructions.add(in1); Instructions.add(in2);Instructions.add(in1); Instructions.add(in2);Instructions.add(in1); Instructions.add(in2);Instructions.add(in1); Instructions.add(in2);
 		prog = new Program(Instructions, "Square App");
-		if (prog.isCorrect()){
-			initialize();
-			frmLogowindow.setBackground(Color.WHITE);
-			frmLogowindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		}
-		else {
-			System.out.println("Error on Program Instructions, check again please.");
-			prog.printErrors();
-		}
+
+		prog.printErrors();
+	
+		initialize();
+		frmLogowindow.setBackground(Color.WHITE);
+		frmLogowindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	public void paint ( Graphics g ){
@@ -64,7 +61,7 @@ public class GUI extends javax.swing.JFrame {
 		frmLogowindow.setBounds(100, 100, logo.getWidth(), logo.getHeight());
 		
 		
-		JButton btnNewButton = new JButton("Square");
+		JButton btnNewButton = new JButton("Execute");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				paint(frmLogowindow.getGraphics());

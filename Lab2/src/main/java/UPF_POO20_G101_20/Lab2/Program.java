@@ -69,10 +69,16 @@ public class Program {
     }
     
     public void goToStartLoop() {
-    	while (!this.Instructions.get(programIndex).getCode().equals("REP")) {
+    	int safe = loopIndex;
+    	while (!this.Instructions.get(programIndex).getCode().equals("REP") || loopIndex == 0) {
     		loopIndex--;
     	}
-    	loopIndex++;
+    	if (this.Instructions.get(programIndex).getCode().equals("REP")) {
+        	loopIndex++;
+    	}
+    	else {
+    		loopIndex = safe;
+    	}
     }
 
 	public int getLoopIndex() {
