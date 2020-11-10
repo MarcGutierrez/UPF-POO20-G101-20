@@ -57,9 +57,9 @@ public class Instruction {
     	if (rightCode) {
     		switch(codeInd) {
     		case 0:
-    			return (this.param >= 0 && this.param <= 1000) ? 0 : 5 ;
+    			return (this.param >= 0 && this.param <= 1000) ? 0 : 5  ;
     		case 1:
-    			return (this.param >= 0 && this.param <= 1000) ? 0 : 5 ;
+    			return (this.param == 0 || this.param == 1) ? 0 : 3     ;
     		case 2:
     			return (this.param >= -360 && this.param <= 360) ? 0 : 4;
     		case 3:

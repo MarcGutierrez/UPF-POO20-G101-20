@@ -34,9 +34,15 @@ public class GUI extends javax.swing.JFrame {
 		Instruction in2 = new Instruction("ROT", 90.0);
 		Instructions.add(in1); Instructions.add(in2);Instructions.add(in1); Instructions.add(in2);Instructions.add(in1); Instructions.add(in2);Instructions.add(in1); Instructions.add(in2);
 		prog = new Program(Instructions, "Square App");
-		initialize();
-		frmLogowindow.setBackground(Color.BLACK);
-		frmLogowindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		if (prog.isCorrect()){
+			initialize();
+			frmLogowindow.setBackground(Color.WHITE);
+			frmLogowindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
+		else {
+			System.out.println("Error on Program Instructions, check again please.");
+			prog.printErrors();
+		}
 	}
 	
 	public void paint ( Graphics g ){
@@ -73,8 +79,18 @@ public class GUI extends javax.swing.JFrame {
 				logo.togglePen();
 			}
 		});
-		btnNewButton_1.setBounds( 132, 527, 107, 23);
+		btnNewButton_1.setBounds( 132, 527, 112, 23);
 		frmLogowindow.getContentPane().add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Clear");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmLogowindow.getGraphics().clearRect(0, 0, 800, 600);
+				logo.resetTurtle();
+			}
+		});
+		btnNewButton_2.setBounds( 254, 527, 112, 23);
+		frmLogowindow.getContentPane().add(btnNewButton_2);
 	}
 
 	public Logo getLogo() {

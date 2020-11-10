@@ -45,6 +45,15 @@ public class Logo {
     		else if (ins.getCode().equals("FWD")) {
     			t.forward(ins.getParam(), g);
     		}
+    		else if (ins.getCode().equals("PEN")) {
+    			t.setPen(ins.getParam() == 1.0);
+    		}
+    		else if(ins.getCode().equals("REP")) {
+    			p.setLoopIndex((int)ins.getParam());
+    		}
+    		else if(ins.getCode().equals("END")) {
+    			p.goToStartLoop();
+    		}
     	}
     	t.draw(g);
     	p.restart();

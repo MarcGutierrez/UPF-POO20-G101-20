@@ -11,7 +11,7 @@ public class Program {
     Program(List<Instruction> inst, String name){
         Instructions = inst;
         this.name = name;
-        loopIndex = 0;
+        setLoopIndex(0);
         programIndex = 0;
     }
 
@@ -61,17 +61,25 @@ public class Program {
     	Instruction inst = Instructions.get(0);
     	while (!hasFinished()) {
     		if (!inst.isCorrect()) {
-    			System.out.println(inst.getCode() + " " + Double.toString(inst.getParam()));
+    			System.out.println(inst.info());
     		}
     		inst = getNextInstruction();
     	}
-    	goToStartLoop();
+    	restart();
     }
     
-    private void goToStartLoop() {
+    public void goToStartLoop() {
     	while (!this.Instructions.get(programIndex).getCode().equals("REP")) {
-    		programIndex--;
+    		loopIndex--;
     	}
-    	programIndex++;
+    	loopIndex++;
     }
+
+	public int getLoopIndex() {
+		return loopIndex;
+	}
+
+	public void setLoopIndex(int d) {
+		this.loopIndex = d;
+	}
 }
