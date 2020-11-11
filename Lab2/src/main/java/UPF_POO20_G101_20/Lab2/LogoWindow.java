@@ -14,7 +14,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class GUI extends javax.swing.JFrame {
+public class LogoWindow extends javax.swing.JFrame {
 
 	/**
 	 * 
@@ -27,7 +27,7 @@ public class GUI extends javax.swing.JFrame {
 	/**
 	 * Create the application.
 	 */
-	public GUI() {
+	public LogoWindow() {
 		logo = new Logo(800, 600);
 		List<Instruction> Instructions = new ArrayList<Instruction>();
 		Instruction in1 = new Instruction("FWD", 100.0);
