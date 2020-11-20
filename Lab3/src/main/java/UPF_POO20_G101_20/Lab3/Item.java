@@ -5,13 +5,13 @@ public abstract class Item {
 	private String type;
 	private double size[] = {0, 0, 0};
 	private double cost;
-	Package pack;
+	private Package pack;
 	
 	Item(){
 		setName("Default name");
 		setType("Default type");
 		setCost(10.0);
-		pack = new Package();
+		pack = new Package(5, 5);
 	}
 	
 	protected Item(String name, String type, double size[], double cost){
@@ -19,7 +19,7 @@ public abstract class Item {
 		this.setType(type);
 		this.setSize(size);
 		this.setCost(cost);
-		pack = new Package();
+		pack = new Package(5, 5);
 	}
 
 	public String getName() {

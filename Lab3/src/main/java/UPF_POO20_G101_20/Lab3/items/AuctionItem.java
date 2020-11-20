@@ -1,12 +1,12 @@
-package UPF_POO20_G101_20.Lab3.Items;
+package UPF_POO20_G101_20.Lab3.items;
 
 import UPF_POO20_G101_20.Lab3.Item;
-import UPF_POO20_G101_20.Lab3.Users.Buyer;
+import UPF_POO20_G101_20.Lab3.users.Buyer;
 
 public class AuctionItem extends Item {
-	double bid;
-	Buyer bidder;
-	String deadline;
+	private double bid;
+	private Buyer bidder;
+	private String deadline;
 	
 	static final int fee = 5;
 	static final double tax = 0.05;
