@@ -4,7 +4,7 @@ public class Package {
     private int width;
     private int height;
 
-    protected Package(int w, int h){
+    public Package(int w, int h){
         width = w;
         height = h;
     }

@@ -11,7 +11,7 @@ public class AuctionItem extends Item {
 	static final int fee = 5;
 	static final double tax = 0.05;
 	
-	AuctionItem(String name, String type, double[] size, double cost, double bid, String deadline) {
+	public AuctionItem(String name, String type, double[] size, double cost, double bid, String deadline) {
 		super(name, type, size, cost);
 		this.bid = bid;
 		this.deadline = deadline;
@@ -31,6 +31,9 @@ public class AuctionItem extends Item {
 		if (this.bid < bid) {
 			this.bidder = bidder;
 			this.bid = bid;
+		}
+		else {
+			System.out.println("The bid of " + bid + " is too low, please try again " + bidder.getName());
 		}
 	}
 	

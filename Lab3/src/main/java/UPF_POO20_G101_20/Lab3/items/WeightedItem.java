@@ -7,7 +7,7 @@ public class WeightedItem extends Item {
 	private double stock;
 	private double initStock;
 	
-	WeightedItem(String name, String type, double[] size, double cost, double price, double n) {
+	public WeightedItem(String name, String type, double[] size, double cost, double price, double n) {
 		super(name, type, size, cost);
 		this.price = price;
 		stock = n;
@@ -16,7 +16,7 @@ public class WeightedItem extends Item {
 
 	@Override
 	public double getPrice() {
-		return stock*price;
+		return price;
 	}
 
 	@Override
@@ -27,6 +27,10 @@ public class WeightedItem extends Item {
 	public double sell(int n) {
 		stock -= n;
 		return getPrice()*n;
+	}
+	
+	public double getStock() {
+		return stock;
 	}
 
 }

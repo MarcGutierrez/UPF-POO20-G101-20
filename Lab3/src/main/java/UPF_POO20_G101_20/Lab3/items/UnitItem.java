@@ -7,7 +7,7 @@ public class UnitItem extends Item {
 	private int initStock;
 	private int stock;
 
-	UnitItem(String name, String type, double[] size, double cost, double price, int n) {
+	public UnitItem(String name, String type, double[] size, double cost, double price, int n) {
 		super(name, type, size, cost);
 		this.price = price;
 		initStock = n;
@@ -16,7 +16,7 @@ public class UnitItem extends Item {
 
 	@Override
 	public double getPrice() {
-		return price*stock;
+		return price;
 	}
 
 	@Override
@@ -27,6 +27,10 @@ public class UnitItem extends Item {
 	public double sell(int n) {
 		stock -= n;
 		return getPrice()*n;
+	}
+	
+	public double getStock() {
+		return stock;
 	}
 
 }
