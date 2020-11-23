@@ -77,6 +77,11 @@ public class OnlineStore{
         store.itemsStock.add(i1);
         store.itemsStock.add(i2);
         
+        store.users.add(u);
+        store.users.add(u1);
+        store.users.add(s);
+        store.users.add(a);
+        
         i2.makeBid(u, 11025);
         i2.makeBid(u1, 114450);
         
