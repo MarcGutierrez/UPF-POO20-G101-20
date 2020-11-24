@@ -22,22 +22,27 @@ public class OnlineStore{
 	public static void main( String[] args )
     {
 		OnlineStore store = new OnlineStore();
+        
+        Buyer u = new Buyer("Jason", "8", "vier13", "477558456");
+        Buyer u1 = new Buyer("Ramon", "9", "vfhs3", "47821369");
+        Seller s = new Seller("John", "7", "Wick", "444572455");
+        Admin a = new Admin("Admin", "0", "afhgfh");
+        
+        
 		double size[] = {1, 1};
-        WeightedItem i = new WeightedItem("Rice", "Food", size, 2, 5, 20);
+        WeightedItem i = new WeightedItem("Rice", "Food", size, 2, s, 5, 20);
         store.costs += i.getCost();
         System.out.println(i.getName() + " " + Double.toString(i.getCost()) + " " + i.getType() + " " + Double.toString(i.getPrice()) + " " + i.getStock());
-        i.sell(5);
         System.out.println(i.computeProfit() + " " + i.getSize()[0] + " " + i.getSize()[1] + " " + i.getSize()[2]);
         
         double size1[] = {1, 1, 1};
-        UnitItem i1 = new UnitItem("Sofa", "Furniture", size1, 2, 5, 20);
+        UnitItem i1 = new UnitItem("Sofa", "Furniture", size1, 2, s, 5, 20);
         store.costs += i1.getCost();
         System.out.println(i1.getName() + " " + Double.toString(i1.getCost()) + " " + i1.getType() + " " + Double.toString(i1.getPrice()) + " " + i1.getStock());
-        i1.sell(5);
         System.out.println(i1.computeProfit() + " " +  " " + i1.getSize()[0] + " " + i1.getSize()[1] + " " + i1.getSize()[2]);
         
         double size2[] = {10, 10, 10};
-        AuctionItem i2 = new AuctionItem("Volvo", "Car", size2, 11960, 13000, "20171010");
+        AuctionItem i2 = new AuctionItem("Volvo", "Car", size2, 11960, s, 13000, "20171010");
         store.costs += i2.getCost();
         System.out.println(i2.computeProfit() + " " + i2.getDeadline() + " " + i2.getName() + " " + i2.getPrice() + " " + i2.getBuyer());
         
@@ -51,13 +56,9 @@ public class OnlineStore{
         Envelope e = new Envelope(1, 1, "A");
         Envelope e1 = new Envelope(2, 2, "B");
         
-        Buyer u = new Buyer("Jason", "8", "vier13", "477558456");
-        Buyer u1 = new Buyer("Ramon", "9", "vfhs3", "47821369");
-        Seller s = new Seller("John", "7", "Wick", "444572455");
-        Admin a = new Admin("Admin", "0", "afhgfh");
-        
-        u.buy(i);
-        s.sell(i); // How the stock really work? Immediate profits are not computed in the right way
+        s.addAvailableItem(i);
+        u.buy(i, 10);
+        s.sell(i);
         
         a.expel(u);
         a.manageAuction(i2, "20171009");
@@ -82,8 +83,10 @@ public class OnlineStore{
         store.users.add(s);
         store.users.add(a);
         
-        i2.makeBid(u, 11025);
-        i2.makeBid(u1, 114450);
+        u.buy(i2, 1);
+        i2.makeBid(u, 11025, "20170110");
+        i2.makeBid(u1, 114450, "20170312");
+        i2.makeBid(u, 114455, "20171010");
         
         store.benefits += i.computeProfit() + i1.computeProfit() + i2.computeProfit();
         

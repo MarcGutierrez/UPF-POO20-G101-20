@@ -4,6 +4,7 @@ import java.util.List;
 
 import UPF_POO20_G101_20.Lab3.packages.Box;
 import UPF_POO20_G101_20.Lab3.packages.Envelope;
+import UPF_POO20_G101_20.Lab3.users.Seller;
 
 public abstract class Item {
 	private String name;
@@ -11,20 +12,22 @@ public abstract class Item {
 	private double size[] = {0, 0, 0};
 	private double cost;
 	private Package pack;
+	private Seller seller;
 	
 	Item(){
 		setName("Default name");
 		setType("Default type");
 		setCost(10.0);
-		pack = new Package(5, 5);
+		pack = null;
 	}
 	
-	public Item(String name, String type, double size[], double cost){
+	public Item(String name, String type, double size[], double cost, Seller s){
 		this.setName(name);
 		this.setType(type);
 		this.setSize(size);
 		this.setCost(cost);
-		pack = new Package(5, 5);
+		seller = s;
+		pack = null;
 	}
 
 	public String getName() {
@@ -70,6 +73,10 @@ public abstract class Item {
 		this.cost = cost;
 	}
 	
+	public Seller getSeller() {
+		return seller;
+	}
+	
 	public void assignBestPackage(List<Package> p) {
 		for (int i = 0; i < p.size(); i++) {
 			if(p.get(i) instanceof Box) {
@@ -85,7 +92,11 @@ public abstract class Item {
 				}
 			}
 		}
-		if ( pack instanceof Box) {
+		if (pack == null) {
+			System.out.println("There is no package suited for this Item, please make a new package for Item of size: ("
+		+ size[0] + "," + size[1] + "," + size[2] + ")");
+		}
+		else if ( pack instanceof Box) {
 			Box b = (Box)pack;
 			System.out.println("Box with size(" + b.getHeight() + "," + b.getWidth()+ "," + b.getDepth() + ") assigned to item " + getName());
 		}

@@ -1,14 +1,15 @@
 package UPF_POO20_G101_20.Lab3.items;
 
 import UPF_POO20_G101_20.Lab3.Item;
+import UPF_POO20_G101_20.Lab3.users.Seller;
 
 public class UnitItem extends Item {
 	private double price;
 	private int initStock;
 	private int stock;
 
-	public UnitItem(String name, String type, double[] size, double cost, double price, int n) {
-		super(name, type, size, cost);
+	public UnitItem(String name, String type, double[] size, double cost, Seller s, double price, int n) {
+		super(name, type, size, cost, s);
 		this.price = price;
 		initStock = n;
 		stock = n;
@@ -25,6 +26,9 @@ public class UnitItem extends Item {
 	}
 	
 	public double sell(int n) {
+		if (n > stock || n < 1) {
+			n = stock;
+		}
 		stock -= n;
 		return getPrice()*n;
 	}

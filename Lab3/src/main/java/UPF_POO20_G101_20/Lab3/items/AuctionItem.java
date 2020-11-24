@@ -2,6 +2,7 @@ package UPF_POO20_G101_20.Lab3.items;
 
 import UPF_POO20_G101_20.Lab3.Item;
 import UPF_POO20_G101_20.Lab3.users.Buyer;
+import UPF_POO20_G101_20.Lab3.users.Seller;
 
 public class AuctionItem extends Item {
 	private double bid;
@@ -11,8 +12,8 @@ public class AuctionItem extends Item {
 	static final int fee = 5;
 	static final double tax = 0.05;
 	
-	public AuctionItem(String name, String type, double[] size, double cost, double bid, String deadline) {
-		super(name, type, size, cost);
+	public AuctionItem(String name, String type, double[] size, double cost, Seller s, double bid, String deadline) {
+		super(name, type, size, cost, s);
 		this.bid = bid;
 		this.deadline = deadline;
 	}
@@ -27,14 +28,25 @@ public class AuctionItem extends Item {
 		return bid - fee - (bid*tax) - getCost();
 	}
 	
-	public void makeBid(Buyer bidder, double bid) {
-		if (this.bid < bid) {
-			this.bidder = bidder;
-			this.bid = bid;
+	public void makeBid(Buyer bidder, double bid, String time) {
+		if (!frozen(time)) {
+			if (this.bid < bid) {
+				this.bidder = bidder;
+				this.bid = bid;
+			}
+			else {
+				System.out.println("The bid of " + bid + " is too low, please try again " + bidder.getName());
+			}
 		}
 		else {
-			System.out.println("The bid of " + bid + " is too low, please try again " + bidder.getName());
+			deadline = "";
+			buy();
 		}
+	}
+	
+	private void buy() {
+		bidder.buy((Item)this, 1);
+		getSeller().sell((Item)this);
 	}
 	
 	public boolean frozen(String time) {
