@@ -1,0 +1,16 @@
+Grade for OOP Seminar 3. 
+ 
+ Max grade: 10pt 
+ 
+Total grade: 5.1
+
+All classes(1pt): 1
+
+Relations(3pt): 0.8
+
+Attributes(1pt): 1
+
+Methods(3pt): 1.8
+
+Appropriate changes to Buyer, Seller, OnlineStore, Admin ( 2pt ): 0.5
+
