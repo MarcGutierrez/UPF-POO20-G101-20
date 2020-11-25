@@ -11,14 +11,28 @@ import UPF_POO20_G101_20.Lab4.packages.Envelope;
 import UPF_POO20_G101_20.Lab4.users.Admin;
 import UPF_POO20_G101_20.Lab4.users.Buyer;
 import UPF_POO20_G101_20.Lab4.users.Seller;
+import java.util.Date;
 
 public class FullOnlineStore{
 	private List<User> users = new ArrayList<User>();
 	private List<Item> itemsStock = new ArrayList<Item>();
 	private List<Package> packages = new ArrayList<Package>();
 	private List<Sale> sales = new ArrayList<Sale>();
+	private Date date;
 	private double benefits = 0; // totalCost
 	private double costs = 0;  // totalPrice
+	
+	public void addSale(Item item, Buyer buyer) {
+		Sale sale = new Sale(item, buyer);
+		sales.add(sale);
+	}
+	
+	public void sell (Item item, Buyer buyer, int number) {
+		costs += item.getCost();
+		benefits += item.computeProfit();
+		buyer.buy(item, number);  // The buy of buyer already calls the sell of seller
+		addSale(item, buyer);
+	}
 	
 	public static void main( String[] args )
     {
@@ -43,7 +57,9 @@ public class FullOnlineStore{
         System.out.println(i1.computeProfit() + " " +  " " + i1.getSize()[0] + " " + i1.getSize()[1] + " " + i1.getSize()[2]);
         
         double size2[] = {10, 10, 10};
-        AuctionItem i2 = new AuctionItem("Volvo", "Car", size2, 11960, s, 13000, "20171010");
+        long millis = System.currentTimeMillis();
+        Date date = new Date(millis+999999999);
+        AuctionItem i2 = new AuctionItem("Volvo", "Car", size2, 11960, s, 13000, date);
         store.costs += i2.getCost();
         System.out.println(i2.computeProfit() + " " + i2.getDeadline() + " " + i2.getName() + " " + i2.getPrice() + " " + i2.getBuyer());
         
@@ -58,11 +74,10 @@ public class FullOnlineStore{
         Envelope e1 = new Envelope(2, 2, "B");
         
         s.addAvailableItem(i);
-        u.buy(i, 10);
-        s.sell(i);
+        store.sell(i, u, 10);
         
         a.expel(u);
-        a.manageAuction(i2, "20171009");
+        a.manageAuction(i2, new Date());
         a.printStock(auction);
         
         store.packages.add(b);
@@ -85,9 +100,9 @@ public class FullOnlineStore{
         store.users.add(a);
         
         u.buy(i2, 1);
-        i2.makeBid(u, 11025, "20170110");
-        i2.makeBid(u1, 114450, "20170312");
-        i2.makeBid(u, 114455, "20171010");
+        i2.makeBid(u, 11025, new Date());
+        i2.makeBid(u1, 114450, new Date());
+        i2.makeBid(u, 114455, new Date());
         
         store.benefits += i.computeProfit() + i1.computeProfit() + i2.computeProfit();
         

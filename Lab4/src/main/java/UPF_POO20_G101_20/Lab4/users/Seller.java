@@ -17,10 +17,20 @@ public class Seller extends User{
         accountNumber = a;
     }
 
-    public void sell(Item i) {
+    public void sell(Item i, int number) {
         if (deposit(i.getPrice()) && hasItem(i)) {
-			System.out.println(getName() + " is selling item " + i.getName() + " for " + i.computeProfit() + " euros");
-			System.out.println("Price " + i.computeProfit() + " is getting added into account " + accountNumber + " from user " + getName());
+			double x = 0.0;
+        	if (i instanceof UnitItem) {
+        		UnitItem item = (UnitItem)i;
+        		x = item.sell(number);
+        	}
+        	else if (i instanceof WeightedItem) {
+        		WeightedItem item = (WeightedItem)i;
+        		x = item.sell(number);
+        	}
+			System.out.println(getName() + " is selling item " + i.getName() + " for " + x + " euros");
+			System.out.println("Price " + x + " is getting added into account " + accountNumber + " from user " + getName());
+			
 			if (i instanceof UnitItem) {
 				UnitItem u = (UnitItem)i;
 				if (u.getStock() == 0) {

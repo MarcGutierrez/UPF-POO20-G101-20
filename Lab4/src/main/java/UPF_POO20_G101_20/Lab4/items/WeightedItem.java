@@ -36,5 +36,4 @@ public class WeightedItem extends Item {
 	public double getStock() {
 		return stock;
 	}
-
 }

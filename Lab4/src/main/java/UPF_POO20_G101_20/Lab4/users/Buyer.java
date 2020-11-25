@@ -20,16 +20,16 @@ public class Buyer extends User {
 	
 	public void buy(Item i, int number) {
 		if (pay(i.getPrice())) {
-			double x = 0.0;
+			boolean x = true;
         	if (i instanceof UnitItem) {
         		UnitItem item = (UnitItem)i;
-        		x = item.sell(number);
+        		x = number > item.getStock();
         	}
         	else if (i instanceof WeightedItem) {
         		WeightedItem item = (WeightedItem)i;
-        		x = item.sell(number);
+        		x = number > item.getStock();
         	}
-        	if (x == 0.0 && !(i instanceof AuctionItem)) {
+        	if (x && !(i instanceof AuctionItem)) {
         		System.out.println("You tried to buy more than the actual stock, please, try again buying less.");
         	}
         	else if(i instanceof AuctionItem) {
@@ -39,6 +39,7 @@ public class Buyer extends User {
     			System.out.println(getName() + " is buying item " + i.getName() + " for " + i.getPrice() + " euros");
     			boughtItems.add(i);
     			System.out.println("Price " + i.getPrice() + " is getting charged into account " + accountNumber + " from user " + getName());
+    			i.getSeller().sell(i, number);
         	}
 		}
 	}

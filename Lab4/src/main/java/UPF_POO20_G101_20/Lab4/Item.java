@@ -2,11 +2,13 @@ package UPF_POO20_G101_20.Lab4;
 
 import java.util.List;
 
+import UPF_POO20_G101_20.Lab4.items.Taxable;
 import UPF_POO20_G101_20.Lab4.packages.Box;
 import UPF_POO20_G101_20.Lab4.packages.Envelope;
 import UPF_POO20_G101_20.Lab4.users.Seller;
 
-public abstract class Item {
+public abstract class Item implements Taxable {
+	
 	private String name;
 	private String type;
 	private double size[] = {0, 0, 0};
@@ -103,6 +105,18 @@ public abstract class Item {
 		else {
 			System.out.println("Envelope with size(" + pack.getHeight() + "," + pack.getWidth()+ ") assigned to item " + getName());
 		}
+	}
+
+	public double getPriceOnlyTax() {
+		return getPrice()*IVA;
+	}
+
+	public double getPricePlusTax() {
+		return getPrice()+getPrice()*IVA;
+	}
+
+	public double sumTotalTax(Taxable t) {
+		return getPricePlusTax() + ((t instanceof Item) ? ((Item)t).getPricePlusTax() : ((Package)t).getPricePlusTax());
 	}
 	
 	public abstract double getPrice();

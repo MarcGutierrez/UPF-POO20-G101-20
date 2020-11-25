@@ -1,5 +1,7 @@
 package UPF_POO20_G101_20.Lab4.items;
 
+import java.util.Date;
+
 import UPF_POO20_G101_20.Lab4.Item;
 import UPF_POO20_G101_20.Lab4.users.Buyer;
 import UPF_POO20_G101_20.Lab4.users.Seller;
@@ -7,12 +9,12 @@ import UPF_POO20_G101_20.Lab4.users.Seller;
 public class AuctionItem extends Item {
 	private double bid;
 	private Buyer bidder;
-	private String deadline;
+	private Date deadline;
 	
 	static final int fee = 5;
 	static final double tax = 0.05;
 	
-	public AuctionItem(String name, String type, double[] size, double cost, Seller s, double bid, String deadline) {
+	public AuctionItem(String name, String type, double[] size, double cost, Seller s, double bid, Date deadline) {
 		super(name, type, size, cost, s);
 		this.bid = bid;
 		this.deadline = deadline;
@@ -28,7 +30,7 @@ public class AuctionItem extends Item {
 		return bid - fee - (bid*tax) - getCost();
 	}
 	
-	public void makeBid(Buyer bidder, double bid, String time) {
+	public void makeBid(Buyer bidder, double bid, Date time) {
 		if (!frozen(time)) {
 			if (this.bid < bid) {
 				this.bidder = bidder;
@@ -39,25 +41,24 @@ public class AuctionItem extends Item {
 			}
 		}
 		else {
-			deadline = "";
 			buy();
 		}
 	}
 	
 	private void buy() {
 		bidder.buy((Item)this, 1);
-		getSeller().sell((Item)this);
+		getSeller().sell((Item)this, 1);
 	}
 	
-	public boolean frozen(String time) {
-		return (time.equals(getDeadline())) ? true : false;
+	public boolean frozen(Date time) {
+		return time.after(getDeadline());
 	}
 
 	public Buyer getBuyer() {
 		return bidder;
 	}
 	
-	public String getDeadline() {
+	public Date getDeadline() {
 		return deadline;
 	}
 	
