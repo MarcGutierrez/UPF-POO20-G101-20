@@ -1,21 +1,21 @@
 package UPF_POO20_G101_20.Lab4;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import UPF_POO20_G101_20.Lab4.users.Buyer;
 
-public class Sale {
-	private final Date date;
+public class Sale implements Comparable<Sale> {
+	private final Calendar date;
 	private final Item item;
 	private final Buyer buyer;
 	
-	Sale(Item i, Buyer b){
-		date = new Date();
+	Sale(Item i, Buyer b, Calendar d){
+		date = d;
 		item = i;
 		buyer = b;
 	}
 	
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 	
@@ -25,5 +25,15 @@ public class Sale {
 	
 	public Buyer getBuyer() {
 		return buyer;
+	}
+
+	// override from Comparable< MyClass >
+	public int compareTo( Sale ins ) {
+		if ( getDate().before(ins.getDate()))
+			return -1;
+		else if ( getDate().equals(ins.getDate()) )
+			return 0;
+		else
+			return 1;
 	}
 }

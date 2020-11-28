@@ -7,7 +7,7 @@ import UPF_POO20_G101_20.Lab4.packages.Box;
 import UPF_POO20_G101_20.Lab4.packages.Envelope;
 import UPF_POO20_G101_20.Lab4.users.Seller;
 
-public abstract class Item implements Taxable {
+public abstract class Item implements Taxable, Comparable<Item> {
 	
 	private String name;
 	private String type;
@@ -82,13 +82,12 @@ public abstract class Item implements Taxable {
 	public void assignBestPackage(List<Package> p) {
 		for (int i = 0; i < p.size(); i++) {
 			if(p.get(i) instanceof Box) {
-				Box b = (Box)p.get(i);
-				if (b.isSuitable(size)) {
+				if (((Box)p.get(i)).isSuitable(size)) {
 					pack = p.get(i);
 				}
 			}
 			else {
-				Envelope e = (Envelope)p.get(i);
+				Envelope e = (Envelope)(p.get(i));
 				if (size[2] == 0 && e.isSuitable(size)) {
 					pack = p.get(i);
 				}

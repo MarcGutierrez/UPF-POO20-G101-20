@@ -36,4 +36,9 @@ public class WeightedItem extends Item {
 	public double getStock() {
 		return stock;
 	}
+
+	public int compareTo(Item o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

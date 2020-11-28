@@ -37,4 +37,9 @@ public class UnitItem extends Item {
 		return stock;
 	}
 
+	public int compareTo(Item o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

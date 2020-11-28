@@ -1,6 +1,6 @@
 package UPF_POO20_G101_20.Lab4.items;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import UPF_POO20_G101_20.Lab4.Item;
 import UPF_POO20_G101_20.Lab4.users.Buyer;
@@ -9,15 +9,16 @@ import UPF_POO20_G101_20.Lab4.users.Seller;
 public class AuctionItem extends Item {
 	private double bid;
 	private Buyer bidder;
-	private Date deadline;
+	private Calendar deadline;
 	
 	static final int fee = 5;
 	static final double tax = 0.05;
 	
-	public AuctionItem(String name, String type, double[] size, double cost, Seller s, double bid, Date deadline) {
+	public AuctionItem(String name, String type, double[] size, double cost, Seller s, double bid, Calendar deadline) {
 		super(name, type, size, cost, s);
 		this.bid = bid;
 		this.deadline = deadline;
+		bidder = new Buyer();
 	}
 
 	@Override
@@ -30,7 +31,7 @@ public class AuctionItem extends Item {
 		return bid - fee - (bid*tax) - getCost();
 	}
 	
-	public void makeBid(Buyer bidder, double bid, Date time) {
+	public void makeBid(Buyer bidder, double bid, Calendar time) {
 		if (!frozen(time)) {
 			if (this.bid < bid) {
 				this.bidder = bidder;
@@ -50,7 +51,7 @@ public class AuctionItem extends Item {
 		getSeller().sell((Item)this, 1);
 	}
 	
-	public boolean frozen(Date time) {
+	public boolean frozen(Calendar time) {
 		return time.after(getDeadline());
 	}
 
@@ -58,8 +59,13 @@ public class AuctionItem extends Item {
 		return bidder;
 	}
 	
-	public Date getDeadline() {
+	public Calendar getDeadline() {
 		return deadline;
+	}
+
+	public int compareTo(Item o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

@@ -1,6 +1,6 @@
 package UPF_POO20_G101_20.Lab4.users;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import UPF_POO20_G101_20.Lab4.User;
@@ -21,7 +21,7 @@ public class Admin extends User {
 		return false;
 	}
 	
-	public boolean manageAuction(AuctionItem i, Date d) {
+	public boolean manageAuction(AuctionItem i, Calendar d) {
 		if (d.before(i.getDeadline())) {
 			System.out.println(getName() + " managed the item " + i.getName());
 			return true;

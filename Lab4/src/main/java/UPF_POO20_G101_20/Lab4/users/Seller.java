@@ -17,12 +17,12 @@ public class Seller extends User{
         accountNumber = a;
     }
 
-    public void sell(Item i, int number) {
+    public void sell(Item i, double number) {
         if (deposit(i.getPrice()) && hasItem(i)) {
 			double x = 0.0;
         	if (i instanceof UnitItem) {
         		UnitItem item = (UnitItem)i;
-        		x = item.sell(number);
+        		x = item.sell((int)number);
         	}
         	else if (i instanceof WeightedItem) {
         		WeightedItem item = (WeightedItem)i;
