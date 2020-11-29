@@ -28,9 +28,8 @@ public class UnitItem extends Item {
 	public double sell(int n) {
 		if (n > stock || n < 1)
 			n = stock;
-		
 		stock -= n;
-		return sumTotalTax(getPackage())*n - ((getPackage() != null) ? getPackage().getPricePlusTax() : 0);
+		return getPrice()*n;
 	}
 	
 	public double getStock() {

@@ -55,6 +55,7 @@ public class FullOnlineStore{
 			if (item instanceof AuctionItem && ((AuctionItem)item).frozen(date)) {
 		        sell(item, ((AuctionItem)item).getBuyer(), 1);
 		        itemsStock.remove(item);
+		        auctionItems.remove(item);
 			}
 		}
 	}

@@ -26,7 +26,7 @@ public class Buyer extends User {
 		if (pay(i.getPrice())) {
         	if (i instanceof UnitItem) {
         		UnitItem item = (UnitItem)i;
-        		number = (number > item.getStock()) ? item.getStock() : number;
+        		number = (int)((number > item.getStock()) ? item.getStock() : number);
         	}
         	else if (i instanceof WeightedItem) {
         		WeightedItem item = (WeightedItem)i;

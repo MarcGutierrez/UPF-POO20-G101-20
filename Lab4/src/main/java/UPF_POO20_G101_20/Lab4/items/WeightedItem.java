@@ -30,7 +30,7 @@ public class WeightedItem extends Item {
 			n = stock;
 		
 		stock -= n;
-		return sumTotalTax(getPackage())*n - ((getPackage() != null) ? getPackage().getPricePlusTax() : 0);
+		return getPrice()*n;
 	}
 	
 	public double getStock() {

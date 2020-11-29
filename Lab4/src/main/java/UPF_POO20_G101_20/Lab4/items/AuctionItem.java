@@ -28,7 +28,7 @@ public class AuctionItem extends Item {
 
 	@Override
 	public double computeProfit() {
-		return bid - fee - (bid*tax) - getCost();
+		return bid - fee - (bid*tax) - getCost() - getPriceOnlyTax();
 	}
 	
 	public void makeBid(Buyer bidder, double bid, Calendar time) {
