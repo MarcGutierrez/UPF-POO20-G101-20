@@ -26,7 +26,7 @@ public class Sale implements Comparable<Sale> {
 	public Buyer getBuyer() {
 		return buyer;
 	}
-
+	
 	// override from Comparable< MyClass >
 	public int compareTo( Sale ins ) {
 		if ( getDate().before(ins.getDate()))

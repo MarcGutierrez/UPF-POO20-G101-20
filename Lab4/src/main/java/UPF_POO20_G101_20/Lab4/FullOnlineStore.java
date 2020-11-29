@@ -2,6 +2,7 @@ package UPF_POO20_G101_20.Lab4;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import UPF_POO20_G101_20.Lab4.items.AuctionItem;
@@ -16,15 +17,28 @@ import UPF_POO20_G101_20.Lab4.users.Seller;
 public class FullOnlineStore{
 	static private List<User> users = new ArrayList<User>();
 	static private List<Item> itemsStock = new ArrayList<Item>();
+	static private List<AuctionItem> auctionItems = new ArrayList<AuctionItem>();
 	static private List<Package> packages = new ArrayList<Package>();
 	static private List<Sale> sales = new ArrayList<Sale>();
 	static private Calendar date;
 	static private double benefits = 0; // totalCost
 	static private double costs = 0;  // totalPrice
 	
+	private FullOnlineStore() {}
+	
 	public static void addSale(Item item, Buyer buyer) {
-		Sale sale = new Sale(item, buyer, date);
+		Calendar x = Calendar.getInstance();
+		x.setTime(date.getTime());
+		Sale sale = new Sale(item, buyer, x);
 		sales.add(sale);
+		Collections.sort(sales);
+	}
+	
+	public static void addItem(Item item) {
+		itemsStock.add(item);
+		Collections.sort(itemsStock);
+		if (item instanceof AuctionItem)
+			auctionItems.add((AuctionItem)item);
 	}
 	
 	public static void sell (Item item, Buyer buyer, int number) {
@@ -76,10 +90,7 @@ public class FullOnlineStore{
 		date.set(Calendar.DAY_OF_MONTH, 27);
         AuctionItem i2 = new AuctionItem("Volvo", "Car", size2, 11960, s, 13000, date);
         costs += i2.getCost();
-        System.out.println(i2.computeProfit() + " " + i2.getDeadline() + " " + i2.getName() + " " + i2.getPrice() + " " + i2.getBuyer());
-        
-        List<AuctionItem> auction = new ArrayList<AuctionItem>();
-        auction.add(i2);
+        System.out.println(i2.computeProfit() + " " + i2.getDeadline().getTime() + " " + i2.getName() + " " + i2.getPrice() + " " + i2.getBuyer().getName());
         
         Box b = new Box(1, 1, 1);
         Box b1 = new Box(2, 2, 1);
@@ -90,10 +101,11 @@ public class FullOnlineStore{
         
         s.addAvailableItem(i);
         sell(i, u, 10);
+        sell(i1, u1, 12);
         
         a.expel(u);
         a.manageAuction(i2, Calendar.getInstance());
-        a.printStock(auction);
+        a.printStock(auctionItems);
         
         packages.add(b);
         packages.add(b1);
@@ -114,9 +126,17 @@ public class FullOnlineStore{
         users.add(s);
         users.add(a);
         
+        i2.makeBid(u, 13500, Calendar.getInstance());
+        
         for (int idx = 0; idx < 30; idx++) {
         	updateDate();
         }
+        
+        for(int idx = 0; idx < sales.size(); idx++)
+        	System.out.println(sales.get(idx).getItem().getName() + " " + sales.get(idx).getBuyer().getName() + " " + sales.get(idx).getDate().getTime());
+
+        for(int idx = 0; idx < itemsStock.size(); idx++)
+        	System.out.println(itemsStock.get(idx).getName() + " " + itemsStock.get(idx).getPrice());
         
         benefits += i.computeProfit() + i1.computeProfit() + i2.computeProfit();
         

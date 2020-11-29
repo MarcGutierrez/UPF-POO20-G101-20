@@ -62,10 +62,4 @@ public class AuctionItem extends Item {
 	public Calendar getDeadline() {
 		return deadline;
 	}
-
-	public int compareTo(Item o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
 }

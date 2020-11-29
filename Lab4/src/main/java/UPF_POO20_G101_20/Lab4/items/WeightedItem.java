@@ -26,19 +26,14 @@ public class WeightedItem extends Item {
 	}
 	
 	public double sell(double n) {
-		if (n > stock || n <= 0) {
+		if (n > stock || n <= 0)
 			n = stock;
-		}
+		
 		stock -= n;
-		return getPrice()*n;
+		return sumTotalTax(getPackage())*n - ((getPackage() != null) ? getPackage().getPricePlusTax() : 0);
 	}
 	
 	public double getStock() {
 		return stock;
-	}
-
-	public int compareTo(Item o) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 }

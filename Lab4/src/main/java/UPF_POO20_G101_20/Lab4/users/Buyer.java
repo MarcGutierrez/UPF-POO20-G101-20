@@ -5,7 +5,6 @@ import java.util.List;
 
 import UPF_POO20_G101_20.Lab4.Item;
 import UPF_POO20_G101_20.Lab4.User;
-import UPF_POO20_G101_20.Lab4.items.AuctionItem;
 import UPF_POO20_G101_20.Lab4.items.UnitItem;
 import UPF_POO20_G101_20.Lab4.items.WeightedItem;
 
@@ -33,12 +32,10 @@ public class Buyer extends User {
         		WeightedItem item = (WeightedItem)i;
         		number = (number > item.getStock()) ? item.getStock() : number;
         	}
-        	else {
-    			System.out.println(getName() + " is buying item " + i.getName() + " for " + i.getPrice() + " euros");
-    			boughtItems.add(i);
-    			System.out.println("Price " + i.getPrice() + " is getting charged into account " + accountNumber + " from user " + getName());
-    			i.getSeller().sell(i, number);
-        	}
+			System.out.println(getName() + " is buying item " + i.getName() + " for " + i.sumTotalTax(i.getPackage()) + " euros");
+			boughtItems.add(i);
+			System.out.println("Price " + i.sumTotalTax(i.getPackage()) + " is getting charged into account " + accountNumber + " from user " + getName());
+			i.getSeller().sell(i, number);
 		}
 	}
 	

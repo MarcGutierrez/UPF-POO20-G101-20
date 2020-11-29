@@ -26,20 +26,14 @@ public class UnitItem extends Item {
 	}
 	
 	public double sell(int n) {
-		if (n > stock || n < 1) {
+		if (n > stock || n < 1)
 			n = stock;
-		}
+		
 		stock -= n;
-		return getPrice()*n;
+		return sumTotalTax(getPackage())*n - ((getPackage() != null) ? getPackage().getPricePlusTax() : 0);
 	}
 	
 	public double getStock() {
 		return stock;
 	}
-
-	public int compareTo(Item o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }

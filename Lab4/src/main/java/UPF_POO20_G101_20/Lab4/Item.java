@@ -115,7 +115,17 @@ public abstract class Item implements Taxable, Comparable<Item> {
 	}
 
 	public double sumTotalTax(Taxable t) {
-		return getPricePlusTax() + ((t instanceof Item) ? ((Item)t).getPricePlusTax() : ((Package)t).getPricePlusTax());
+		return getPricePlusTax() + ((t instanceof Item) ? ((Item)t).getPricePlusTax() : (t instanceof Package) ? ((Package)t).getPricePlusTax() : 0);
+	}
+	
+	// override from Comparable< MyClass >
+	public int compareTo( Item ins ) {
+		if (getPrice() < ins.getPrice())
+			return -1;
+		else if (getPrice() == ins.getPrice())
+			return 0;
+		else
+			return 1;
 	}
 	
 	public abstract double getPrice();

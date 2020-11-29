@@ -26,14 +26,14 @@ public class Admin extends User {
 			System.out.println(getName() + " managed the item " + i.getName());
 			return true;
 		}
-		System.out.println("Item " + i.getName() + " deadline ended on: " + i.getDeadline());
+		System.out.println("Item " + i.getName() + " deadline ended on: " + i.getDeadline().getTime());
 		return false;
 	}
 	
 	public void printStock(List<AuctionItem> i) {
 		System.out.println("Administrator " + getName() + " is printing the current stock");
 		for(int idx = 0; idx < i.size(); idx++) {
-			System.out.println(i.get(idx).getName() + " has current price " + Double.toString(i.get(idx).getPrice()) + " with deadline " + i.get(idx).getDeadline());
+			System.out.println(i.get(idx).getName() + " has current price " + Double.toString(i.get(idx).getPrice()) + " with deadline " + i.get(idx).getDeadline().getTime());
 		}
 	}
 
