@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Calendar;
 import UPF_POO20_G101_20.Lab5.Hospital;
+import UPF_POO20_G101_20.Lab5.Person;
 
-public class HospitalManager{
+public class HospitalManager {
 	private List< Hospital > hospitals;
 	private List< Doctor > doctors;
 	private List< Administrative > administratives;

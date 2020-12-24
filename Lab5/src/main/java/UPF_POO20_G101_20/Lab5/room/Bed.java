@@ -8,7 +8,8 @@ public class Bed{
 	private Resident resident;
 		
 	public Bed( int id, Room r ){
-		// Add code here
+		this.bedID = id;
+		this.room = r;
 	}
 	
 	public void assignRoom( Room r ){

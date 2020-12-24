@@ -9,7 +9,8 @@ public class Room{
 	
 	public Room( int roomID ){
 		beds = new ArrayList<Bed>();
-		// Add code here
+		this.roomID = roomID;
+		
 	}
 	
 	public void addBed( int bedID ){

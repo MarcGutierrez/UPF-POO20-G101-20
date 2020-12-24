@@ -5,25 +5,23 @@ public class Person{
 	public String name;
 	
 	public Person( int id, String name ){
-		// Add code here	
+		this.id = id; 
+		this.name = name;
 	}
 	
 	public int getID(){
 		return id;
-		// Add code here
 	}
 	public String getName(){
-		return name;
-		// Add code here	
+		return name;	
 	}
-	public void setID( int id ){
-		// Add code here
+	public void setID( int i ){
+		id = i;
 	}
-	public void setName( String name ){
-		// Add code here
+	public void setName( String n ){
+		name = n;
 	}
 	public String toString(){
-		return name;
-		// Add code here
+		return name + " " + Integer.toString(id);
 	}
 }

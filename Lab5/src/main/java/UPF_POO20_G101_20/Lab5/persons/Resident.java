@@ -2,30 +2,28 @@ package UPF_POO20_G101_20.Lab5.persons;
 
 import UPF_POO20_G101_20.Lab5.room.*;
 
-public class Resident // Add code here
+public class Resident extends Patient // Add code here
 {
 	private Room room;
 	private Bed bed;
 
 	public Resident ( int id, String name, int age ){
-		// Add code here
+		super(id, name, age);
 	}
 	
 	public void assignRoom( Room r ){
-		// Add code here
+		room = r;
 	}
 	
 	public void assignBed( Bed b ){
-		// Add code here	
+		bed = b;	
 	}
 	
 	public Doctor getDoctor(){
-		return null;
-		// Add code here
+		return visits.get(0).getDoctor();
 	}
 	
 	public String toString(){
-		return null;
-		// Add code here
+		return super.toString();
 	}
 }
