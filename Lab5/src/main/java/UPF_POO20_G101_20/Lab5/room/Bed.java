@@ -13,29 +13,26 @@ public class Bed{
 	}
 	
 	public void assignRoom( Room r ){
-		// Add code here
+		room = r;
 	}
 	
 	public void assignResident( Resident r ){
-		// Add code here
+		resident = r;
 	}
 	
 	public void release(){
-		// Add code here
+		resident = null;
 	}
 	
 	public int getBedID(){
 		return bedID;
-		// Add code here
 	}
 
-	public boolean isAvailable(){
-		return false;
-		// Add code here
+	public boolean isAvailable(){		
+		return (resident == null);
 	}	
 	
 	public String toString(){
-		return null;
-		// Add code here	
+		return "Bed: " + Integer.toString(bedID) + "\nOccupied by: " + resident.toString();
 	}
 }

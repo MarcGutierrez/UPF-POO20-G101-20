@@ -10,21 +10,18 @@ public class Room{
 	public Room( int roomID ){
 		beds = new ArrayList<Bed>();
 		this.roomID = roomID;
-		
 	}
 	
 	public void addBed( int bedID ){
-		// Add code here
+		beds.add(new Bed(bedID, this));
 	}
 	
 	public Bed getBed( int idx ){
-		return null;
-		// Add code here
+		return beds.get(idx);
 	}
 	
 	public Bed getAvailableBed(){
-		return null;
-		// Add code here
+		for(Bed b : beds) { if (b.isAvailable()) return b; }; return null;
 	}
 	
 	public boolean isAvailable(){
