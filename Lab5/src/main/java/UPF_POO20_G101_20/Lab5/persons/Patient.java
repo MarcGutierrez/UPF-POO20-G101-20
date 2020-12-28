@@ -40,10 +40,13 @@ public class Patient extends Person implements Comparable<Patient>{
 	}
 
 	public int compareTo( Patient p ){
-		return age;
+		Integer size = ((Integer)visits.size());
+		Integer pSize = ((Integer)p.visits.size());
+		
+		return age.compareTo(p.getAge()) + size.compareTo(pSize);
 	}
 	
 	public String toString(){
-		return super.toString() + " " + Integer.toString(age);
+		return super.toString() + ", " + Integer.toString(age) + ")";
 	}
 }

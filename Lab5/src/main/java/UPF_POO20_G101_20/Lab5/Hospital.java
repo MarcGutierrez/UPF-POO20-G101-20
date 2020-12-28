@@ -84,12 +84,7 @@ public class Hospital{
 	}
 	
 	public void assignBeds( int adminIdx ){
-		boolean check = false;
-		for (int i = 0; i < admins.size(); i++)
-			if(admins.get(i).id == adminIdx)
-				check = true;
-		
-		if(check) {
+		if(adminIdx < admins.size() && adminIdx >= 0) {
 			for (int i = 0; i < patients.size(); i++) {
 				if (patients.get(i) instanceof Resident) {
 					Resident r = (Resident)patients.get(i);
@@ -98,8 +93,16 @@ public class Hospital{
 						if(bed != null) {
 							r.assignBed(bed);
 							bed.assignResident(r);
+							break;
 						}
 					}
+					System.out.println(admins.get(0).toString() + " has assigned bed to " + r.toString() + 
+							
+							" is assigned to " + ((r.getBed() != null) ? r.getBed().getRoom().toString() + " " + r.getBed().toString() :  " and has no room neither bed")
+							
+							+ " and " + 
+						
+							((r.getDoctor() != null) ? r.getDoctor().toString() :  " and has no doctor"));
 				}
 			}
 		}
@@ -110,6 +113,26 @@ public class Hospital{
 	}
 	
 	public String toString(){
-		return name;
+		String a = "";
+		for(Administrative admin : admins) a += admin.toString() + "\n";
+		String d = "";
+		for(Doctor doctor : doctors) d += doctor.toString() + "\n";
+		String p = "";
+		for(Patient patient : patients) {
+			p += patient.toString();
+			if (patient instanceof Resident) {
+				Resident r = (Resident) patient;
+				p += 
+				" is assigned to " + ((r.getBed() != null) ? r.getBed().getRoom().toString() + " " + r.getBed().toString() :  " and has no room neither bed")
+				+ " and " + 
+				((r.getDoctor() != null) ? r.getDoctor().toString() :  " and has no doctor");
+			}
+			p += "\n";
+		}
+				
+		String r = "";
+		for(Room room : rooms) r += room.toString() + "\n" + room.listBeds() + "\n";
+		
+		return name + "\n" + "Administratives:\n" + a + "Doctors:\n" + d + "Patients:\n" + p + "Rooms:\n" + r;
 	}
 }

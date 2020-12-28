@@ -25,17 +25,18 @@ public class Room{
 	}
 	
 	public boolean isAvailable(){
+		for(Bed b : beds) { if (b.isAvailable()) return true; };
 		return false;
-		// Add code here
 	}
 	
-	public String listBeds(){
-		return null;
-		// Add code here
+	public String listBeds(){		
+		String bedList = "";
+		for(Bed b : beds) bedList += b.toString() + "\n" ;
+		return bedList;
 	}
 
 	public String toString(){
-		return null; 
-		// Add code here
+		return "Room " + Integer.toString(roomID);
+		
 	}
 }

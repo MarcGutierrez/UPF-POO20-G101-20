@@ -22,6 +22,6 @@ public class Person{
 		name = n;
 	}
 	public String toString(){
-		return name + " " + Integer.toString(id);
+		return name + " (ID " + Integer.toString(id);
 	}
 }

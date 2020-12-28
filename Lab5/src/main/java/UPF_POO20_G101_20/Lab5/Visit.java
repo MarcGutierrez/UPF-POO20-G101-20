@@ -6,10 +6,10 @@ import UPF_POO20_G101_20.Lab5.persons.Doctor;
 import UPF_POO20_G101_20.Lab5.persons.Patient;
 
 public class Visit implements Comparable<Visit>{
-	Calendar date;
-	String summary;
-	Doctor doctor;
-	Patient patient;
+	private Calendar date;
+	private String summary;
+	private Doctor doctor;
+	private Patient patient;
 
 	public Visit( Calendar d, String s, Doctor doc, Patient p ){
 		this.date = d;
@@ -36,6 +36,6 @@ public class Visit implements Comparable<Visit>{
 	}
 
 	public int compareTo(Visit arg0) {
-		return 0;
+		return date.compareTo(arg0.getDate());
 	}
 }

@@ -27,12 +27,16 @@ public class Bed{
 	public int getBedID(){
 		return bedID;
 	}
+	
+	public Room getRoom() {
+		return room;
+	}
 
 	public boolean isAvailable(){		
 		return (resident == null);
 	}	
 	
 	public String toString(){
-		return "Bed: " + Integer.toString(bedID) + "\nOccupied by: " + resident.toString();
+		return "Bed " + Integer.toString(bedID);
 	}
 }

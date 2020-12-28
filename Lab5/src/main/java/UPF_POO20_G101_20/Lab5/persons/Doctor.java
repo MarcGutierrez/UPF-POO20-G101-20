@@ -7,7 +7,7 @@ import UPF_POO20_G101_20.Lab5.Visit;
 
 import java.util.ArrayList;
 
-public class Doctor extends Person		// Add code here
+public class Doctor extends Person	
 {
 	private List< String > specialities;
 	private List< Visit > visits;
@@ -27,16 +27,18 @@ public class Doctor extends Person		// Add code here
 	}
 	
 	public void listSpecialities(){
+		System.out.println(toString() + " has specialities:");
 		for(int i = 0; i < specialities.size(); i++)
 			System.out.println(specialities.get(i));
 	}
 	
 	public void listVisits(){
+		System.out.println(toString() + " has the following visits:");
 		for(int i = 0; i < visits.size(); i++)
 			System.out.println(visits.get(i).toString());
 	}
 	
 	public String toString(){
-		return super.toString();
+		return "Doctor " + super.toString() + ")";
 	}
 }
